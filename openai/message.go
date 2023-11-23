@@ -8,10 +8,14 @@ type Message struct {
 	ToolCallId string     `json:"tool_call_id,omitempty"`
 }
 
+// IsValid checks if the message is valid
 func (m *Message) IsValid() bool {
 	return m.Role != "" && m.Content != ""
 }
 
+// SetContent sets the content of the message
+// The content is the text of the message
+// https://beta.openai.com/docs/api-reference/messages/create#content
 func (m *Message) SetContent(content string) *Message {
 	if content != "" {
 		m.Content = content
@@ -20,6 +24,9 @@ func (m *Message) SetContent(content string) *Message {
 	return m
 }
 
+// SetName sets the name of the message
+// The name is the name of the user
+// https://beta.openai.com/docs/api-reference/messages/create#name
 func (m *Message) SetName(name string) *Message {
 	if name != "" {
 		m.Name = name
@@ -28,6 +35,9 @@ func (m *Message) SetName(name string) *Message {
 	return m
 }
 
+// SetRole sets the role of the message
+// The role is the role of the user
+// https://beta.openai.com/docs/api-reference/messages/create#role
 func (m *Message) SetRole(role string) *Message {
 	if role != "" {
 		m.Role = role
@@ -36,8 +46,11 @@ func (m *Message) SetRole(role string) *Message {
 	return m
 }
 
-func NewMessage(content string) (newMessage *Message) {
-	return &Message{
+// NewMessage creates a new message
+// By default, the role is "user"
+// https://beta.openai.com/docs/api-reference/messages/create#content
+func NewMessage(content string) (newMessage Message) {
+	return Message{
 		Role:    "user",
 		Content: content,
 	}

@@ -28,7 +28,7 @@ type CompletionRequest struct {
 // AddMessage adds a message to the request
 // https://beta.openai.com/docs/api-reference/completions/create#messages
 func (c *CompletionRequest) AddMessage(message Message) *CompletionRequest {
-	if !message.IsValid() {
+	if message.IsValid() {
 		c.Messages = append(c.Messages, message)
 	}
 

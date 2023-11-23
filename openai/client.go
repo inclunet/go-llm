@@ -101,8 +101,8 @@ func (c *Client) request(method, url string, body io.Reader) (response *http.Res
 	return response, err
 }
 
-func (c *Client) Completions(completions *CompletionRequest) (response *CompletionsResponse, err error) {
-	response = &CompletionsResponse{}
+func (c *Client) Completions(completions *CompletionRequest) (response *CompletionResponse, err error) {
+	response = NewCompletionResponse()
 
 	jsonResponse, err := c.Post("/chat/completions", completions)
 
